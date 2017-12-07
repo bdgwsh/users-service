@@ -20,6 +20,7 @@ Run the app by typing:
 | DELETE  |/users/<user_id>   | Deletes user with id <user_id>      |
 | POST    |/auth/             | Checks user's login and password. Returns ```Status: 200 OK ``` if user exists and password is correct. In otherwise ```Status : 401 UNAUTHORIZED ```  |
 
+In case of requesting an unexisting user the server returns `Status: 400 BAD REQUEST`
 
 By default it runs on http://127.0.0.1:8000
 ### Examples  
@@ -64,16 +65,9 @@ By default it runs on http://127.0.0.1:8000
  ``` 
 {
     "id": 7,
-    "login": "newsuperuser"
 }  
  ```
 
-If user already exists or there is no user with <user_id>
- ```  
-{
-    "user": null
-}
- ```  
 
 
     
