@@ -25,7 +25,7 @@ def add_user():
     except exc.IntegrityError:
         db.session.rollback()
         return Response(status=400)
-    return jsonify({"user_id": new_user.id})
+    return jsonify({"id": new_user.id})
 
 
 @app.route('/users/<int:user_id>', methods=['PATCH'])
@@ -45,7 +45,7 @@ def delete_user(user_id):
     if user is not None:
         db.session.delete(user)
         db.session.commit()
-        return jsonify({"user_id": user.id})
+        return jsonify({"id": user.id})
     else:
         return Response(status=400)
 
