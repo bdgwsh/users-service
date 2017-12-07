@@ -68,7 +68,7 @@ By default in runs on http://127.0.0.1:8000
 }  
  ```
 
-If user already exists ore there is no user with <user_id>
+If user already exists or there is no user with <user_id>
  ```  
 {
     "user": null
