@@ -24,8 +24,8 @@ def add_user():
         db.session.commit()
     except exc.IntegrityError:
         db.session.rollback()
-        return "The user already exists!"
-    return jsonify({"id": new_user.id, "login": new_user.login})
+        new_user.login = None
+    return jsonify({"login": new_user.login})
 
 
 @app.route('/users/<int:user_id>', methods=['PATCH'])
