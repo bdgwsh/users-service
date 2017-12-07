@@ -21,7 +21,7 @@ Run the app by typing:
 | POST    |/auth/             | Checks user's login and password. Returns ```Status: 200 OK ``` if user exists and password is correct. In otherwise ```Status : 401 UNAUTHORIZED ```  |
 
 
-By default in runs on http://127.0.0.1:8000
+By default it runs on http://127.0.0.1:8000
 ### Examples  
  
 *GET /users/* 
