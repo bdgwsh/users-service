@@ -24,20 +24,19 @@ def add_user():
         db.session.commit()
     except exc.IntegrityError:
         db.session.rollback()
-        new_user.login = None
-    return jsonify({"login": new_user.login})
+        return Response(status=400)
+    return jsonify({"user_id": new_user.id})
 
 
 @app.route('/users/<int:user_id>', methods=['PATCH'])
 def change_password(user_id):
-    User.query.filter_by(id=user_id).update(
-        {'password': request.json['password']})
-    db.session.commit()
-    user = User.query.get(user_id)
-    if user:
-        return jsonify({"id": user.id})
+    if User.query.filter_by(id=user_id).update(
+            {'password': request.json['password']}):
+        db.session.commit()
+        return jsonify({"id": user_id})
     else:
-        return jsonify({"user": user})
+        db.session.rollback()
+        return Response(status=400)
 
 
 @app.route('/users/<int:user_id>', methods=['DELETE'])
@@ -46,9 +45,9 @@ def delete_user(user_id):
     if user is not None:
         db.session.delete(user)
         db.session.commit()
-        return jsonify({"login": user.login})
+        return jsonify({"user_id": user.id})
     else:
-        return jsonify({"user": user})
+        return Response(status=400)
 
 
 @app.route('/auth/', methods=['POST'])
