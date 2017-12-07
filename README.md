@@ -61,7 +61,7 @@ By default it runs on http://127.0.0.1:8000
 
  ```{ "login" : "new_user" , "password" : "passcode"}  ```
  
- returns  
+ creates a new user in the database and returns id of newly created user  
  ``` 
 {
     "id": 7
