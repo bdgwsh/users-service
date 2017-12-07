@@ -1,6 +1,13 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'usersdb.db')
-SQLALCHEMY_TRACK_MODIFICATIONS = True
-PORT = 8000
+
+class BaseConfig:
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'usersdb.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+
+class DevelopmentConfig(BaseConfig):
+    DEBUG = True
+    PORT = 8000
